@@ -34,7 +34,7 @@ inquirer
         console.log('您选择的打包器为：', chalk.green(name))
         let spinner = ora(`正在为您获取插件模板(${name})...`)
         spinner.start()
-        fs.createReadStream(path.join(__dirname,`../plugin-template/${name}.zip`)).pipe(unzip.Extract({
+        fs.createReadStream(path.join(__dirname,`../${name}.zip`)).pipe(unzip.Extract({
             path: path.join(process.cwd(),'.')
         }))
         .once('close', function () {
