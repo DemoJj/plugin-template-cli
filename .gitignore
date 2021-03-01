@@ -1,0 +1,7 @@
+# 过滤无关文件夹
+/plugin-template/
+/rollup-package-template/
+/webpack-package-template/
+
+# dependencies  npm包文件
+/node_modules/

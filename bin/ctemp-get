@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+// 交互式命令行
+const inquirer = require('inquirer')
+// 修改控制台字符串的样式
+const chalk = require('chalk')
+const fs = require("fs");
+const unzip = require("unzip");
+const ora = require('ora')
+const path = require('path')
+
+// 自定义交互式命令行的问题及简单的校验
+let question = [{
+    name: "name",
+    type: 'list',
+    choices: ['rollup', 'webpack'],
+    default: 'rollup',
+    message: "请选择插件打包器",
+    validate(val) {
+        if (val === '') {
+            return 'Name is required!'
+        } else {
+            return true
+        }
+    }
+}]
+
+inquirer
+    .prompt(question).then(answers => {
+        // answers 就是用户输入的内容，是个对象
+        let {
+            name
+        } = answers;
+        console.log('您选择的打包器为：', chalk.green(name))
+        let spinner = ora(`正在为您获取插件模板(${name})...`)
+        spinner.start()
+        fs.createReadStream(path.join(__dirname,`../plugin-template/${name}.zip`)).pipe(unzip.Extract({
+            path: path.join(process.cwd(),'.')
+        }))
+        .once('close', function () {
+            spinner.stop()
+            console.log(chalk.blue('获取成功!'))
+        })
+    })
