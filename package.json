@@ -1,15 +1,12 @@
 {
-  "name": "package-template",
+  "name": "ctemp-cli",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "插件开发脚手架（webpack、rollup）",
   "bin": {
     "ctemp": "bin/ctemp",
     "ctemp-get": "bin/ctemp-get"
   },
-  "author": "demoJx",
+  "author": "demo-jx",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",
@@ -19,5 +16,9 @@
   },
   "devDependencies": {
     "unzip": "^0.1.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/DemoJx/plugin-template-cli.git"
   }
 }
